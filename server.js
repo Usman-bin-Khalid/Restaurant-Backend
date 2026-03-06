@@ -1,16 +1,31 @@
 const express = require('express');
-// rest Objec
+const colors = require('colors');
+const cors = require('cors');
+const morgan = require('morgan');
+const dotenv = require('dotenv');
+ 
+// config env
+dotenv.config();
+
+// rest Object
 const app = express();
+
+// middlewares
+app.use(cors());
+app.use(express.json());
+app.use(morgan('dev'));
+
 // route
 // URL http://localhost:8000
 app.get('/', (req, res) => {
     return res.status(200).send('</h1> Welcome to Food Server App </h1>');
 });
 
-PORT = 8080;
+PORT = process.env.PORT || 8080;
+
 // listen
 app.listen(PORT, () => {
-  console.log(`Server is running on port : ${PORT}`);
+  console.log(`Node Server is running on port : ${PORT}`.white.bgMagenta);
 });
 
 
