@@ -1,6 +1,10 @@
 const registerController = (req , res) => {
   try {
-      const 
+      const {username, email, password, phone, address} = req.body;
+      // validation
+      if (!username || !email || !password || !phone || !address) {
+        
+      }
   } catch (error ) {
     console.log(error);
     res.status(500).send({
