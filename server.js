@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // route
-// URL http://localhost:8000
+// URL http://localhost:8080
 app.use('/api/v1/test', require('./routes/testRoutes'));
 app.use('/api/v1/auth' , require('./routes/authRoutes'));
 app.get('/', (req, res) => {
