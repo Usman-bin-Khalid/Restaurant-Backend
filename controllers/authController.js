@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 
 
 
-
 const registerController = async (req, res) => {
   try {
     const { userName, email, password, phone, address } = req.body;
@@ -48,6 +47,7 @@ const registerController = async (req, res) => {
     });
   }
 };
+
 
 
 
