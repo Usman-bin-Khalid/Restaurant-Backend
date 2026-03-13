@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
 
 
+
+
 const registerController = async (req, res) => {
   try {
     const { userName, email, password, phone, address } = req.body;
@@ -78,7 +80,7 @@ const loginController = async (req, res) => {
          if(!isMatch) {
           return res.status(500).send({success : false, message : 'Invalid Password'});
          }
-
+        // JWT Token
          const token = jwt.sign({_id : user._id} , process.env.JWT_SECRET, {expiresIn : '7d'});
          res.status(200).send({
             success : true,
