@@ -1,6 +1,7 @@
 // GET USER INFO
 
-const getUserController = () => {
+const getUserController =async  (req, res) => {
+    res.status(200).send('Uesr Data');
 
 }
 
