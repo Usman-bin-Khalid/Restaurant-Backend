@@ -6,9 +6,9 @@ const jwt = require('jsonwebtoken');
 
 const registerController = async (req, res) => {
   try {
-    const { userName, email, password, phone, address } = req.body;
+    const { userName, email, password, phone, address, answer } = req.body;
     // validation
-    if (!userName || !email || !password || !phone || !address) {
+    if (!userName || !email || !password || !phone || !address || !answer) {
       return res.status(500).send({
         success: false,
         message: "Please fill all the fields",
@@ -32,9 +32,10 @@ const registerController = async (req, res) => {
     const user = await userModel.create({
       userName,
       email,
-      password : hashPassword,
+      password: hashPassword,
       phone,
       address,
+      answer
     });
     res
       .status(201)
@@ -52,52 +53,52 @@ const registerController = async (req, res) => {
 
 
 const loginController = async (req, res) => {
-    try { 
-         const {email, password} = req.body;
-         // validation
-         if (!email || !password) {
-            return res.status(500).send({
-                success : false,
-                message : 'Please fill all the fields',
+  try {
+    const { email, password } = req.body;
+    // validation
+    if (!email || !password) {
+      return res.status(500).send({
+        success: false,
+        message: 'Please fill all the fields',
 
-            });
-         }
-         // check user
-         const user = await userModel.findOne({
-            email,
-
-         });
-         if (!user) {
-            return res.status(404).send({
-                success : false,
-                message : 'Email is not registered',
-
-            })
-         };
-
-         // check password || compare password
-         const isMatch = await bcrypt.compare(password, user.password);
-         if(!isMatch) {
-          return res.status(500).send({success : false, message : 'Invalid Password'});
-         }
-        // JWT Token
-         const token = jwt.sign({_id : user._id} , process.env.JWT_SECRET, {expiresIn : '7d'});
-         res.status(200).send({
-            success : true,
-            token,
-            message : 'Login Successfully',
-            user,
-         })
- 
-    } catch (error) {
-     console.log(error);
-     res.status(500).send({
-        success : false,
-        message : 'Error in Login API',
-        error,
-     })
+      });
     }
+    // check user
+    const user = await userModel.findOne({
+      email,
+
+    });
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: 'Email is not registered',
+
+      })
+    };
+
+    // check password || compare password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(500).send({ success: false, message: 'Invalid Password' });
+    }
+    // JWT Token
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    res.status(200).send({
+      success: true,
+      token,
+      message: 'Login Successfully',
+      user,
+    })
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: 'Error in Login API',
+      error,
+    })
+  }
 
 }
 
-module.exports = { registerController , loginController};
+module.exports = { registerController, loginController };
