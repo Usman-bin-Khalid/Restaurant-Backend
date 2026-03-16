@@ -59,7 +59,7 @@ const resetPasswordController = async (req, res) => {
     }
     const user = await userModel.findOne({ email, answer });
     if (!user) {
-      return res.status(500).send({ success: false, nessage: 'User Not Found or Invalid Answer' });
+      return res.status(500).send({ success: false, message: 'User Not Found or Invalid Answer' });
 
     }
     // hashing password
@@ -74,6 +74,7 @@ const resetPasswordController = async (req, res) => {
     res.status(500).send({ success: false, message: 'Error in reset password API', error });
   }
 }
+
 
 
 module.exports = {
