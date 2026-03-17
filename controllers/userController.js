@@ -22,6 +22,9 @@ const getUserController = async (req, res) => {
 
 }
 
+
+
+
 // UPDATE USER
 const updateUserController = async (req, res) => {
   try {
