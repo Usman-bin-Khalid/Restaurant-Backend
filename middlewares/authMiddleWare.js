@@ -1,4 +1,7 @@
 const JWT = require("jsonwebtoken");
+
+
+
 module.exports = async (req, res, next) => {
     try {
         const authHeader = req.headers['authorization'];
@@ -31,14 +34,7 @@ module.exports = async (req, res, next) => {
     }
 }
 
-module.exports = async (req, res, next) => {
-    try {
-const authHeader = req.headers['authorization']
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({success : false, message  : 'Error in Auth API', error});
-    }
-}
+
 
 
 
