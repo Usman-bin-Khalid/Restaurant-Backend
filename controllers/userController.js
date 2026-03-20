@@ -24,6 +24,7 @@ const getUserController = async (req, res) => {
 
 
 
+ 
 
 // UPDATE USER
 const updateUserController = async (req, res) => {
@@ -53,6 +54,7 @@ const updateUserController = async (req, res) => {
 
 }
 
+
 // RESET PASSWORD
 const resetPasswordController = async (req, res) => {
   try {
@@ -77,6 +79,7 @@ const resetPasswordController = async (req, res) => {
     res.status(500).send({ success: false, message: 'Error in reset password API', error });
   }
 }
+
 
 
 
