@@ -22,10 +22,6 @@ const getUserController = async (req, res) => {
 
 }
 
-
-
- 
-
 // UPDATE USER
 const updateUserController = async (req, res) => {
   try {
@@ -38,7 +34,7 @@ const updateUserController = async (req, res) => {
     // update
     const { userName, address, phone } = req.body || {};
     if (!req.body) {
-      return res.status(400).send({ success: false, message: "Request body is required" });
+      return res.status(400).send({ success: false, message: "Request body is required"});
     }
     if (userName) user.userName = userName;
     if (address) user.address = address;
@@ -80,9 +76,42 @@ const resetPasswordController = async (req, res) => {
   }
 }
 
+// UPDATE USER PASSWORD
+const updatePasswordController = async (req, res) => {
+  try {
+    // find User
+    const user = await userModel.findById({_id : req.user.id});
+    // validation
+    if (!user) {
+      return res.status(404).send({success : false, message : 'User Not Found'});
+
+    }
+    // get data from User
+    const {oldPassword, newPassword } = req.body;
+    if (!oldPassword || !newPassword) {
+      return res.status(500).send({success : false,
+        message : 'Please Provide Old or New Password',
+        error,
+
+      });
+    }
+    // Check user Password || Compare Password
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(500).send({success : false, message : 'Invalid Old Password'});
+    }
+    // hashing password
+    var salt = bcrypt.genSaltSync(10);
+    const hashedPassword =  await bcrypt.hash(newPassword, salt);
+    user.password = hashedPassword;
+    await user.save();
+    res.status(200).send({success : true, message : 'Password Updated'});
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({success : false, message : 'Error in Password Update API', error});
+  }
+}
 
 
-
-module.exports = {
-  getUserController, updateUserController, resetPasswordController
-};
+module.exports = { getUserController, updateUserController, resetPasswordController , updatePasswordController };
