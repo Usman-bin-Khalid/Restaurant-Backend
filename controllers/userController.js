@@ -80,7 +80,7 @@ const resetPasswordController = async (req, res) => {
 const updatePasswordController = async (req, res) => {
   try {
     // find User
-    const user = await userModel.findById({_id : req.user.id});
+    const user = await userModel.findById({_id : req.user._id});
     // validation
     if (!user) {
       return res.status(404).send({success : false, message : 'User Not Found'});
