@@ -52,4 +52,4 @@ coords : {
     {timestamps : true}
 );
 
-module.exports = mongoose.Model('Resturant' , resturantSchema);
+module.exports = mongoose.model('Resturant' , resturantSchema);

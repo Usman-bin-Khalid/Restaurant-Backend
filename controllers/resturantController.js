@@ -13,7 +13,7 @@ const createResturantController = async (req, res) => {
        await newResturant.save();
        res.status(201).send({
         success : true,
-        message : 'Resturant Created Successfully'
+        message : 'New Resturant Created Successfully'
        });
 
     } catch (error) {
