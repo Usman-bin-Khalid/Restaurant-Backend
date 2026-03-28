@@ -1,6 +1,6 @@
 const express = require('express');
 const authMiddleware = require('../middlewares/authMiddleware');
-const { createResturantController, getAllResturantController, getResturantByIdController } = require('../controllers/resturantController');
+const { createResturantController, getAllResturantController, getResturantByIdController, deleteResturantController } = require('../controllers/resturantController');
 
 const router = express.Router();
 
@@ -17,5 +17,5 @@ router.get('/getAll' , getAllResturantController)
 router.get('/get/:id' , getResturantByIdController)
 
 // DELETE RESTURANT || DELETE
-router.delete('/delete' , authMiddleware)
+router.delete('/delete' , authMiddleware , deleteResturantController)
 module.exports = router;

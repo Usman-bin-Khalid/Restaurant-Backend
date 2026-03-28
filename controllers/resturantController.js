@@ -66,4 +66,9 @@ const getResturantByIdController = async (req, res) => {
 
 }
 
-module.exports = { createResturantController , getAllResturantController ,getResturantByIdController};
+// DELETE RESTURANT
+const deleteResturantController = async (req , res) => {
+
+}
+
+module.exports = { createResturantController , getAllResturantController ,getResturantByIdController , deleteResturantController};
