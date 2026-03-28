@@ -17,5 +17,5 @@ router.get('/getAll' , getAllResturantController)
 router.get('/get/:id' , getResturantByIdController)
 
 // DELETE RESTURANT || DELETE
-router.delete('/delete' , authMiddleware , deleteResturantController)
+router.delete('/delete/:id' , authMiddleware , deleteResturantController)
 module.exports = router;
