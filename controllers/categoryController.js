@@ -24,7 +24,11 @@ const createCatController = async (req, res) => {
 // GET ALL CATEGORIES
 const getAllCatController = async (req , res) => {
     try {
-
+       const categories = await categoryModel.find({});
+       if (!categories) {
+        return res.status(404).send({success : false, message : 'No Category Available'});
+       }
+       res.status(200).send({success : true, totalCount: categories.length, categories});
     } catch (error ) {
         console.log(error);
         res.status(500).send({success : false, message : 'Error in Get All Category API' , error});
@@ -32,4 +36,4 @@ const getAllCatController = async (req , res) => {
 }
 
 
-module.exports = {createCatController};
+module.exports = {createCatController , getAllCatController};

@@ -1,6 +1,6 @@
 const express = require('express');
 const authMiddleware = require('../middlewares/authMiddleware');
-const { createCatController } = require('../controllers/categoryController');
+const { createCatController, getAllCatController } = require('../controllers/categoryController');
 const router = express.Router();
 
 
@@ -9,6 +9,6 @@ const router = express.Router();
 router.post('/create', authMiddleware, createCatController);
 
 // GET ALL CATEGORIES
-router.post('/getAll', )
+router.post('/getAll', getAllCatController );
 
 module.exports = router;
