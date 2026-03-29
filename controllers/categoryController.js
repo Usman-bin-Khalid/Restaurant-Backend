@@ -38,7 +38,14 @@ const getAllCatController = async (req , res) => {
 // UPDATE CATEGORY
 const updateCatController = async (req, res) => {
     try {
+         const {id} = req.prams;
+         const {title, imageUrl} = req.body;
+         const updatedCategory = await categoryModel.findByIdAndUpdate(id, {title, imageUrl}, {new : true});
+         if (!updatedCategory) {
+            return res.status(404).send({success : false, message : 'Category not found'});
 
+         }
+         res.status(200).send({success : true, message : 'Category Updated Successfully', updatedCategroy});
     } catch (error) {
         console.log(error);
         res.status(500).send({success : false, message : 'Error in update Category API', error});
