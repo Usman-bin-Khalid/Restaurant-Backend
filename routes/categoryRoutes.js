@@ -11,4 +11,9 @@ router.post('/create', authMiddleware, createCatController);
 // GET ALL CATEGORIES
 router.get('/getAll', getAllCatController );
 
+// UPDATE CATEGORY
+router.put('/update/:id', authMiddleware, (req, res) => {
+
+});
+
 module.exports = router;

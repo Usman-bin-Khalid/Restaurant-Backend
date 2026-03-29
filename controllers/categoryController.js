@@ -35,5 +35,16 @@ const getAllCatController = async (req , res) => {
     }
 }
 
+// UPDATE CATEGORY
+const updateCatController = async (req, res) => {
+    try {
 
-module.exports = {createCatController , getAllCatController};
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({success : false, message : 'Error in update Category API', error});
+
+    }
+}
+
+
+module.exports = {createCatController , getAllCatController, updateCatController};
