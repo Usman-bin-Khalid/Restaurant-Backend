@@ -9,6 +9,6 @@ const router = express.Router();
 router.post('/create', authMiddleware, createCatController);
 
 // GET ALL CATEGORIES
-router.post('/getAll', getAllCatController );
+router.get('/getAll', getAllCatController );
 
 module.exports = router;
