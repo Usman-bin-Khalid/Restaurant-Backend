@@ -6,8 +6,9 @@ const router = express.Router();
 
 // routes
 // CREATE CATEGORY
-
-
 router.post('/create', authMiddleware, createCatController);
+
+// GET ALL CATEGORIES
+router.post('/getAll', )
 
 module.exports = router;
